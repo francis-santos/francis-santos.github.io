@@ -1,0 +1,45 @@
+# ==============================================================================
+# MIRA DEMO - GITLAB CI/CD PIPELINE FOR PAGES DEPLOYMENT
+# ==============================================================================
+
+stages:
+  - deploy
+
+# Job para deploy no GitLab Pages
+pages:
+  stage: deploy
+  image: alpine:latest
+  
+  # Executar apenas na branch main/master
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH == "master"
+  
+  # Script de deploy
+  script:
+    - echo "🚀 Iniciando deploy do Mira Demo para GitLab Pages..."
+    - echo "📂 Criando diretório public..."
+    - mkdir -p public
+    
+    - echo "📋 Copiando arquivos da aplicação..."
+    - cp index.html public/
+    - cp 404.html public/
+    - cp README.md public/
+    - cp -r assets/ public/assets/ 2>/dev/null || echo "⚠️  Pasta assets não encontrada"
+    
+    - echo "📊 Listando arquivos copiados..."
+    - ls -la public/
+    - du -sh public/
+    
+    - echo "✅ Deploy concluído com sucesso!"
+  
+  # Especificar pasta public como artefato
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 week
+  
+  # Adicionar informações úteis
+  after_script:
+    - echo "🌐 A aplicação estará disponível em:"
+    - echo "   https://$CI_PROJECT_NAMESPACE.gitlab.io/$CI_PROJECT_NAME"

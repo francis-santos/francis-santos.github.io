@@ -1,0 +1,28 @@
+# ==============================================================================
+# MIRA DEMO - GITLAB PAGES CONFIGURATION
+# ==============================================================================
+
+# Configuração para GitLab Pages
+# Este arquivo contém informações sobre o projeto para GitLab Pages
+
+# URL do projeto (será definida automaticamente pelo GitLab)
+# https://<username>.gitlab.io/<project-name>
+
+# Configurações importantes:
+# 1. Branch de deploy: main ou master
+# 2. Pasta de publicação: public (via CI/CD)
+# 3. SPA Support: Habilitado via 404.html
+# 4. Assets: Caminhos relativos configurados
+
+# Estrutura de deploy:
+# public/
+# ├── index.html (página principal)
+# ├── 404.html (fallback para SPA routing)
+# ├── assets/ (recursos estáticos)
+# └── README.md (documentação)
+
+# Para deployment manual:
+# 1. Fazer push dos arquivos para repositório GitLab
+# 2. Ativar GitLab Pages nas configurações do projeto
+# 3. Pipeline CI/CD será executado automaticamente
+# 4. Site estará disponível na URL do GitLab Pages
